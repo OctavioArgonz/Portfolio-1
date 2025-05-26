@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Octavio Argonz - Portfolio Profesional</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bs-primary-rgb: 13, 110, 253; /* Azul Bootstrap por defecto, pero podemos sobreescribir */
+            --custom-primary: #0D6EFD; /* Azul principal */
+            --custom-secondary: #6c757d; /* Gris secundario */
+            --custom-light: #f8f9fa;    /* Fondo claro */
+            --custom-dark: #212529;     /* Texto oscuro */
+            --custom-accent: #FFC107;   /* Un acento amarillo/dorado sutil */
+            --font-family-sans-serif: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        }
+
+        body {
+            font-family: var(--font-family-sans-serif);
+            background-color: var(--custom-light);
+            color: var(--custom-dark);
+        }
+
+        .navbar-custom {
+            background-color: rgba(255, 255, 255, 0.9) !important;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+        }
+        .navbar-custom .navbar-brand, .navbar-custom .nav-link {
+            color: var(--custom-dark) !important;
+        }
+        .navbar-custom .nav-link:hover, .navbar-custom .nav-link.active {
+            color: var(--custom-primary) !important;
+        }
+        .navbar-brand strong { color: var(--custom-primary); }
+
+
+        .hero-section {
+            background-color: var(--custom-dark);
+            color: var(--custom-light);
+            padding: 6rem 0;
+            position: relative;
+            overflow: hidden; /* Para el efecto de fondo */
+        }
+        /* Efecto de fondo sutil (opcional) */
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: linear-gradient(45deg, rgba(var(--bs-primary-rgb), 0.1) 25%, transparent 25%),
+                              linear-gradient(-45deg, rgba(var(--bs-primary-rgb), 0.1) 25%, transparent 25%),
+                              linear-gradient(45deg, transparent 75%, rgba(var(--bs-primary-rgb), 0.1) 75%),
+                              linear-gradient(-45deg, transparent 75%, rgba(var(--bs-primary-rgb), 0.1) 75%);
+            background-size: 20px 20px;
+            opacity: 0.3;
+            z-index: 0;
+        }
+        .hero-section .container { position: relative; z-index: 1;}
+
+        .profile-img-hero {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 5px solid var(--custom-primary);
+            object-fit: cover;
+            box-shadow: 0 0.5rem 1.5rem rgba(var(--bs-primary-rgb), 0.25);
+        }
+        .hero-section h1 {
+            font-weight: 700;
+            font-size: 3.5rem;
+        }
+        .hero-section .lead {
+            font-size: 1.3rem;
+            font-weight: 300;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .hero-section .btn-primary {
+            background-color: var(--custom-primary);
+            border-color: var(--custom-primary);
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+        }
+        .hero-section .btn-outline-light {
+             padding: 0.75rem 1.5rem;
+             font-weight: 600;
+        }
+
+
+        .section-padding { padding: 5rem 0; }
+        .section-title {
+            font-weight: 700;
+            color: var(--custom-dark);
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block; /* Para que el ::after se ajuste al texto */
+        }
+        .section-title::after{
+            content:'';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60%;
+            height: 4px;
+            background-color: var(--custom-primary);
+        }
+        
+        .card-custom {
+            border: none;
+            box-shadow: 0 0.25rem 1rem rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-custom:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0.5rem 1.5rem rgba(var(--bs-primary-rgb),0.15);
+        }
+        .card-custom .card-header {
+            background-color: var(--custom-primary);
+            color: white;
+            font-weight: 600;
+            border-bottom: none;
+        }
+         .card-custom .list-group-item { border-color: rgba(0,0,0,0.075); }
+         .card-custom h5.card-title { color: var(--custom-primary); font-weight: 600;}
+         .card-custom .badge { font-size: 0.8em; }
+
+        #skills .badge {
+            padding: 0.6em 1em;
+            margin: 0.25em;
+            background-color: var(--custom-primary) !important; /* Sobreescribir el color de badge de Bootstrap */
+            color: white !important;
+            font-weight: 500;
+        }
+        #skills .card-custom { background-color: #fff; }
+
+        #education .card-custom { border-left: 5px solid var(--custom-primary); }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--custom-primary);
+            margin-right: 0.5rem;
+        }
+        .cv-download-section { background-color: #e9ecef; }
+
+        footer { background-color: var(--custom-dark); color: var(--custom-light); }
+        footer a { color: var(--custom-primary); text-decoration: none; }
+        footer a:hover { color: var(--custom-light); }
+        footer .social-icon { font-size: 1.5rem; margin: 0 0.5rem; }
+
+    </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target="#mainNavbar" data-bs-offset="80">
+
+    <nav id="mainNavbar" class="navbar navbar-expand-lg navbar-light navbar-custom fixed-top">
+        <div class="container">
+            <a class="navbar-brand fs-4 fw-bold" href="#">Octavio <strong>Argonz</strong></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto fw-medium">
+                    <li class="nav-item"><a class="nav-link active" href="#hero">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">Sobre Mí</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#experience">Experiencia</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">Habilidades</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#education">Educación</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#cv-download">CV</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header id="hero" class="hero-section text-center">
+        <div class="container">
+            <img src="images/profile.jpg" alt="Octavio Argonz" class="profile-img-hero mb-4">
+            <h1 class="display-4 mb-3">Octavio Argonz</h1>
+            <p class="lead mb-4">Estudiante de Gestión de Negocios (ITBA) apasionado por la intersección de Tecnología y Business Intelligence.</p>
+            <a href="#about" class="btn btn-primary btn-lg me-2">Conóceme Más</a>
+            <a href="#cv-download" class="btn btn-outline-light btn-lg">Descargar CV</a>
+        </div>
+    </header>
+
+    <section id="about" class="section-padding">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <h2 class="section-title">Sobre Mí</h2>
+                    <p class="fs-5 text-secondary">Soy un profesional en formación con una visión clara: utilizar la tecnología y el análisis de datos para impulsar la transformación digital y la toma de decisiones estratégicas.</p>
+                    <p>Con más de 2 años en atención al cliente, he cultivado habilidades de comunicación y resolución de problemas. Actualmente, me estoy especializando en analítica digital, buscando siempre aprender y aplicar nuevas herramientas. Me caracterizo por ser analítico, organizado y proactivo.</p>
+                    <ul class="list-unstyled mt-3 fs-5">
+                        <li class="mb-2"><span class="contact-icon">📧</span> argonzoctavio@gmail.com</li>
+                        <li class="mb-2"><span class="contact-icon">🇦🇷</span> Buenos Aires, Argentina</li>
+                        <li><a href="TU_LINKEDIN_AQUI" target="_blank" class="text-decoration-none"><span class="contact-icon">🔗</span> Perfil de LinkedIn</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-6">
+                    <img src="https://via.placeholder.com/500x350/0D6EFD/FFFFFF?Text=Imagen+Conceptual+Profesional" class="img-fluid rounded shadow" alt="Espacio de trabajo conceptual">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="section-padding bg-light">
+        <div class="container">
+            <div class="text-center"><h2 class="section-title">Experiencia Laboral</h2></div>
+            <div class="row">
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card card-custom h-100">
+                        <div class="card-header">Digital Analytics Intern</div>
+                        <div class="card-body">
+                            <h5 class="card-title">Nike (Southbay S.A.)</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Julio 2024 - Presente</h6>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Optimización de BBDD de ventas y performance digital (NDDC).</li>
+                                <li class="list-group-item">Análisis y dashboards (Power BI, Excel, SQL).</li>
+                                <li class="list-group-item">Generación de insights para mejorar UX y estrategia.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card card-custom h-100">
+                        <div class="card-header">Representante de Atención al Cliente</div>
+                        <div class="card-body">
+                            <h5 class="card-title">Valkur</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Nov. 2020 - Nov. 2023</h6>
+                             <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Soporte multicanal enfocado en post-venta.</li>
+                                <li class="list-group-item">Resolución eficiente de problemas.</li>
+                                <li class="list-group-item">Propuestas de mejora de procesos.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card card-custom h-100">
+                        <div class="card-header">Ayudante de Cátedra (ITBA)</div>
+                        <div class="card-body">
+                            <h5 class="card-title">Computación General</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Mar. 2023 - Jul. 2023</h6>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Asistencia en Python y lógica de programación.</li>
+                                <li class="list-group-item">Tutorías a +100 estudiantes de primer año.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="section-padding">
+        <div class="container">
+             <div class="text-center"><h2 class="section-title">Habilidades Técnicas y Soft Skills</h2></div>
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <div class="card card-custom p-4 h-100">
+                        <h4 class="mb-3 fw-semibold"><span class="contact-icon">🛠️</span> Lenguajes y Herramientas</h4>
+                        <p>
+                            <span class="badge">Python</span> <span class="badge">SQL</span> <span class="badge">Power BI</span>
+                            <span class="badge">Excel (Avanzado)</span> <span class="badge">HTML</span> <span class="badge">CSS</span>
+                            <span class="badge">TypeScript</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                     <div class="card card-custom p-4 h-100">
+                        <h4 class="mb-3 fw-semibold"><span class="contact-icon">⚙️</span> Gestión y Procesos</h4>
+                        <p>
+                            <span class="badge">BPM (Bizagi)</span> <span class="badge">Scrum</span> <span class="badge">UML</span>
+                        </p>
+                    </div>
+                </div>
+                 <div class="col-lg-12">
+                     <div class="card card-custom p-4">
+                        <h4 class="mb-3 fw-semibold"><span class="contact-icon">🤝</span> Habilidades Blandas</h4>
+                        <p>
+                            <span class="badge">Comunicación Efectiva</span> <span class="badge">Gestión del Tiempo</span>
+                            <span class="badge">Resolución de Problemas</span> <span class="badge">Pensamiento Crítico y Analítico</span>
+                             <span class="badge">Aprendizaje Continuo</span> <span class="badge">Trabajo en Equipo</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="section-padding bg-light">
+        <div class="container">
+            <div class="text-center"><h2 class="section-title">Formación Académica</h2></div>
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-7">
+                    <div class="card card-custom">
+                        <div class="card-body p-4">
+                             <h4 class="card-title fs-3">Licenciatura en Gestión de Negocios</h4>
+                             <h5 class="text-primary fw-medium fs-5">Instituto Tecnológico de Buenos Aires (ITBA)</h5>
+                             <p class="text-muted mb-2">Marzo 2022 - Estimado Junio 2026</p>
+                             <p class="card-text fs-6">Énfasis en innovación tecnológica, análisis de datos y estrategia empresarial. Preparado para afrontar los desafíos del mercado actual con una perspectiva moderna y analítica.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="cv-download" class="section-padding cv-download-section">
+        <div class="container text-center">
+            <h2 class="section-title d-block">Descarga mi Currículum</h2>
+            <p class="lead text-secondary mb-4">Accede a la versión más actualizada de mi CV en español o inglés.</p>
+            <a href="cv_files/CV_Octavio_Argonz_ES.pdf" download class="btn btn-primary btn-lg me-sm-3 mb-3 mb-sm-0">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download me-2" viewBox="0 0 16 16"><path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/><path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/></svg>
+                CV en Español
+            </a>
+            <a href="cv_files/CV_Octavio_Argonz_EN.pdf" download class="btn btn-secondary btn-lg">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download me-2" viewBox="0 0 16 16"><path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/><path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/></svg>
+                CV en Inglés
+            </a>
+        </div>
+    </section>
+
+    <footer class="py-4">
+        <div class="container text-center">
+            <a href="TU_LINKEDIN_AQUI" target="_blank" class="social-icon text-light mx-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-linkedin" viewBox="0 0 16 16"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/></svg></a>
+            <p class="mb-0 mt-2 fs-6">&copy; <span id="currentYear2"></span> Octavio Argonz. Todos los derechos reservados.</p>
+            <p class="fs-6 text-white-50">Hecho con Bootstrap y �� en Buenos Aires.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('currentYear2').textContent = new Date().getFullYear();
+        
+        // Para activar el link del navbar en scroll (opcional si ya funciona bien con data-bs-spy)
+        // Puedes descomentar si necesitas una lógica más fina
+        /*
+        const mainNavbar = document.getElementById('mainNavbar');
+        if (mainNavbar) {
+            const scrollSpy = new bootstrap.ScrollSpy(document.body, {
+                target: '#mainNavbar',
+                offset: 80 // Ajusta según la altura de tu navbar
+            });
+        }
+        */
+    </script>
+</body>
+</html>
